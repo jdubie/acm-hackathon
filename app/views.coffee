@@ -21,6 +21,12 @@ App.HomeView = Em.View.extend
       .append("svg")
       .attr("width", svgWidth)
       .attr("height", svgHeight)
+
+    showDetails = (data, id, elem) =>
+      @get('controller').set('hover', data._id)
+    hideDetails = (data, id, elem) =>
+      @get('controller').set('hover', false)
+
     createCircle = (x, y, r) ->
       svg.append("circle")
         .style("stroke", "black")
@@ -28,16 +34,20 @@ App.HomeView = Em.View.extend
         .attr("r", r)
         .attr("cx", x)
         .attr("cy", y)
+        .on("mouseover", (d,i) -> showDetails(d, i, this))
+        .on("mouseout", (d,i) -> hideDetails(d, i, this))
+
     companies = @get('controller').get('content')
     sum = 0
 
     amountsRaised = companies.mapProperty('amount_raised')
     max_amount = d3.max(amountsRaised)
     radius_scale = d3.scale.pow().exponent(0.5).domain([0, max_amount]).range([2, 85])
-    
+
     cnodes = companies.map (c) ->
       funding = radius_scale(c.get('amount_raised'))
       data =
+        _id: c.get('_id')
         x: Math.random() * svgWidth
         y: Math.random() * svgHeight
         radius: funding
