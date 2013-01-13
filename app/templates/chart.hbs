@@ -9,17 +9,10 @@
       {{#if selected}}
         <img {{bindAttr src="selected.imageUrl"}}></img>
         <h3>{{selected.name}}</h3>
-        <h3>{{selected.id}}</h3>
         <p>Number of employees: {{selected.number_of_employees}}</p>
-        <p>Founded year: {{selected.founded_year}}</p>
-        {{!selected.number_good_investors}}
-        <p>Overview: {{selected.overview}}</p>
-        <p>
-          <a target="_blank" {{bindAttr href="crunchbase_url"}}>Crunchbase Link</a>
-        </p>
-        <p>
-          <a target="_blank" {{bindAttr href="lifeswap_URL"}}>LifeSwap Link</a>
-        </p>
+        <p>Amount raised in last round: {{selected.amount_raised}}</p>
+        <p>Months since last round: {{selected.months_since_raise}}</p>
+        <p>Overview: {{selected.description}}</p>
       {{/if}}
     </div>
   </div>

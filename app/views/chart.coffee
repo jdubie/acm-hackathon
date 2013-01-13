@@ -1,7 +1,7 @@
 App.ChartView = Em.View.extend
   templateName: require 'templates/chart'
-  svgWidth: 500
-  svgHeight: 500
+  svgWidth: 750
+  svgHeight: 550
   svg: null
   didInsertElement: ->
     svg = d3.select("#viz")
@@ -66,13 +66,13 @@ App.ChartView = Em.View.extend
       ])
       .range([MAX_RAD, svgHeight - MAX_RAD])
 
-    console.log companies.mapProperty(dim.y).map(yScale)
-    console.log companies.mapProperty(dim.x).map(xScale)
+      #console.log companies.mapProperty(dim.y).map(yScale)
+      #console.log companies.mapProperty(dim.x).map(xScale)
 
     cnodes = companies.map (c) ->
       data =
         id     : c.get('id')
-        x      : xScale(c.get(dim.x))
+        x      : svgWidth - xScale(c.get(dim.x))
         y      : svgHeight - yScale(c.get(dim.y))
         radius : rScale(c.get(dim.r))
       createCircle(data.x, data.y, data.radius, data.id)

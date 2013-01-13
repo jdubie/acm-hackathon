@@ -19,10 +19,10 @@ App.Company = DS.Model.extend
 
 
   imageUrl: (() ->
-    'http://crunchbase.com/' + @get('image')
+    'http://crunchbase.com/' + @get('small_image_s')
   ).property('small_image_s')
 
-  didLoad : ->
-    console.log "didLoad", @get('id'), @get('number_of_employees'), @get('months_since_raise'), @get('amount_raised')
+  #didLoad : ->
+  #  console.log "didLoad", @get('id'), @get('number_of_employees'), @get('months_since_raise'), @get('amount_raised')
   didUpdate              : -> console.log "didUpdate link                            : ", @get('title')
   didCreate              : -> console.log "didCreate link                            : ", @get('title')
