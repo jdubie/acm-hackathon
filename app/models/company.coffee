@@ -15,10 +15,22 @@ App.Company = DS.Model.extend
   number_good_investors   : DS.attr 'number'
   lifeswap_URL            : DS.attr 'string'
 
+  small_image_s: DS.attr 'string'
+  number_of_employees_i: DS.attr 'number'
+  months_since_raise_i: DS.attr 'number'
+
+  number_of_employees: (() ->
+    @get('number_of_employees_i')
+  ).property('number_of_employees_i')
+  months_since_raise: (() ->
+    @get('months_since_raise_i')
+  ).property('months_since_raise_i')
+
+
   imageUrl                : (() ->
     'http://crunchbase.com/' + @get('image')
   ).property('image')
 
-  didLoad : -> console.log "didLoad link: "  , @get('image')
-  #didUpdate              : -> console.log "didUpdate link                            : ", @get('title')
-  #didCreate              : -> console.log "didCreate link                            : ", @get('title')
+  didLoad : -> console.log "didLoad link: "  , @get('id')
+  didUpdate              : -> console.log "didUpdate link                            : ", @get('title')
+  didCreate              : -> console.log "didCreate link                            : ", @get('title')
