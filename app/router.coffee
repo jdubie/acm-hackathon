@@ -11,4 +11,3 @@ App.HomeRoute = Em.Route.extend
 App.ChartRoute = Em.Route.extend
   setupControllers: (controller) ->
     controller.set('content', App.store.findQuery(App.Company, name: '*'))
-    #controller.set('content', App.store.find(App.Company))

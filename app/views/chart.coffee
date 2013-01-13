@@ -2,25 +2,28 @@ App.ChartView = Em.View.extend
   templateName: require 'templates/chart'
   svgWidth: 500
   svgHeight: 500
+  svg: null
   didInsertElement: ->
     svg = d3.select("#viz")
       .append("svg")
       .attr("width", @get('svgWidth'))
       .attr("height", @get('svgHeight'))
+    @set('svg', svg)
 
   createVisualization: (() ->
-    return if @get('controller').get('content').get('isUpdating')
-    #console.log 'updated', @get('controller').get('content').get('isUpdating'), 'loaded', @get('controller').get('content').get('isLoaded')
-    #console.log @get('controller').get('content').mapProperty('id')
-    #return
-    
+    isLoaded = @get('controller').get('content').get('isLoaded')
+    return unless isLoaded
+
     svgWidth = @get('svgWidth')
     svgHeight = @get('svgHeight')
     center =
       x: svgWidth / 2
       y: svgHeight / 2
 
-    svg = d3.select("svg")
+    svg = @get('svg')
+
+    # clean up old state
+    svg.selectAll('circle').remove()
 
     showDetails = (data, id, elem) =>
       @get('controller').set('hover', data.id)
@@ -67,4 +70,4 @@ App.ChartView = Em.View.extend
       createCircle(data.x, data.y, data.radius)
       data
 
-  ).observes('controller.content.isUpdating')
+  ).observes('controller.content.isLoaded', 'controller.content.query')
