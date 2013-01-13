@@ -31,29 +31,29 @@ App.ChartView = Em.View.extend
 
     companies = @get('controller').get('content')
 
+    MAX_RAD = 50
+
     dim =
       r: 'number_of_employees'
-      x: 'months_sinces_raise'
+      x: 'months_since_raise'
       y: 'amount_raised'
-
     rScale = d3.scale.pow().exponent(0.5)
       .domain([0, d3.max(companies.mapProperty(dim.r))])
-      .range([2, 85])
+      .range([2, MAX_RAD])
 
     xScale = d3.scale.linear()
-      .domain([0, d3.max(companies.mapProperty(dim.x))])
-      .range([0, center.x])
+      .domain([d3.min(companies.mapProperty(dim.x)), 0])
+      .range([MAX_RAD, svgWidth - MAX_RAD])
 
     yScale = d3.scale.linear()
       .domain([0, d3.max(companies.mapProperty(dim.y))])
-      .range([0, center.y])
+      .range([MAX_RAD, svgHeight - MAX_RAD])
 
     cnodes = companies.map (c) ->
-      funding = radius_scale(c.get('amount_raised'))
       data =
-        id     : c.get('id')
+        id     : c.get('permalink')
         x      : xScale(c.get(dim.x))
-        y      : yScale(c.get(dim.y))
+        y      : svgHeight - yScale(c.get(dim.y))
         radius : rScale(c.get(dim.r))
       createCircle(data.x, data.y, data.radius)
       data

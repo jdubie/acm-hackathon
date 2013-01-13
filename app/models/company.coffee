@@ -3,6 +3,7 @@ App.Company = DS.Model.extend
   amount_raised : DS.attr 'number'
   name          : DS.attr 'string'
   number_of_employees: DS.attr 'number'
+  months_since_raise: DS.attr 'number'
 
   category_code           : DS.attr 'string'
   number_of_employees     : DS.attr 'number'
