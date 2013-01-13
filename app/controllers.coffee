@@ -7,7 +7,10 @@ App.ApplicationController = Em.Controller.extend
 
 App.HomeController = Em.ArrayController.extend
   content: null
-  hover: null
+  hover: false
   selected: (() ->
-    App.Company.find(@get('hover'))
+    if @get('hover')
+      App.Company.find(@get('hover'))
+    else
+      false
   ).property('hover')
