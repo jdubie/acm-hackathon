@@ -2,5 +2,4 @@
 ## MODELS
 #################################################
 
-require 'models/example'
-require 'models/circle'
+require 'models/company'
