@@ -9,10 +9,16 @@ App.ApplicationView = Em.View.extend
 App.HomeView = Em.View.extend
   templateName: require 'templates/home'
   didInsertElement: ->
+    svgWidth = 500
+    svgHeight = 500
+    center =
+      x: svgWidth / 2
+      y: svgHeight / 2
+
     svg = d3.select("#viz")
       .append("svg")
-      .attr("width", 500)
-      .attr("height", 500)
+      .attr("width", svgWidth)
+      .attr("height", svgHeight)
     createCircle = (x, y, r) ->
       svg.append("circle")
         .style("stroke", "black")
@@ -26,11 +32,13 @@ App.HomeView = Em.View.extend
     #radius_scale = d3.scale.pow().exponent(0.5).domain([0, max_amount]).range([2, 85])
 
     cnodes = companies.map (c) ->
-      funding = 3*c.get('_id')
-      #funding = Math.log(c.get('amount_raised'))
-      sum += 2*funding
-      createCircle(sum, sum, funding)
-      { x: sum, y: sum, radius: 2*funding }
+      funding = Math.log(c.get('amount_raised'))
+      data =
+        x: Math.random() * svgWidth
+        y: Math.random() * svgHeight
+        radius: funding
+      createCircle(data.x, data.y, data.radius)
+      data
 
     #####################
     ## Animate them
@@ -41,8 +49,8 @@ App.HomeView = Em.View.extend
 
     move_towards_center = (alpha) ->
       (d) ->
-        d.x = d.x + (250 - d.x) * .12 * alpha
-        d.y = d.y + (250 - d.y) * .12 * alpha
+        d.x = d.x + (center.x - d.x) * .12 * alpha
+        d.y = d.y + (center.y - d.y) * .12 * alpha
 
     circles = d3.selectAll('circle')
       .data(cnodes)
