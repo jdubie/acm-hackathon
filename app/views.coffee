@@ -12,15 +12,17 @@ App.HomeView = Em.View.extend
     svg = d3.select("#viz")
       .append("svg")
       .attr("width", 500)
-      .attr("height", 250)
-
-    createCircle = (x, y) ->
+      .attr("height", 500)
+    createCircle = (x, y, r) ->
       svg.append("circle")
-        .style("stroke", "gray")
-        .style("fill", "white")
-        .attr("r", 50)
+        .style("stroke", "black")
+        .style("fill", "gray")
+        .attr("r", r)
         .attr("cx", x)
         .attr("cy", y)
-
-    createCircle(100, 50)
-    createCircle(100, 150)
+    companies = @get('controller').get('content')
+    sum = 0
+    companies.forEach (c, i) ->
+      funding = Math.log(c.get('amount_raised'))
+      sum += 2*funding
+      createCircle(sum, sum, funding)
