@@ -19,5 +19,7 @@ App.ChartController = Em.ArrayController.extend
   content: null
   query: null
   fetch: (() ->
-    @set('content', App.store.findQuery(App.Company, q: @get('query')))
+    #@set('content', App.store.find(App.Company))
+    #@set('content', App.store.findQuery(App.Company, q: @get('query')))
+    #@set('content', App.store.findQuery(App.Company, q: '*'))
   ).observes('query')

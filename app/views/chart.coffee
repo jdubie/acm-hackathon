@@ -1,18 +1,26 @@
 App.ChartView = Em.View.extend
   templateName: require 'templates/chart'
+  svgWidth: 500
+  svgHeight: 500
+  didInsertElement: ->
+    svg = d3.select("#viz")
+      .append("svg")
+      .attr("width", @get('svgWidth'))
+      .attr("height", @get('svgHeight'))
+
   createVisualization: (() ->
     return if @get('controller').get('content').get('isUpdating')
-      
-    svgWidth = 500
-    svgHeight = 500
+    #console.log 'updated', @get('controller').get('content').get('isUpdating'), 'loaded', @get('controller').get('content').get('isLoaded')
+    #console.log @get('controller').get('content').mapProperty('id')
+    #return
+    
+    svgWidth = @get('svgWidth')
+    svgHeight = @get('svgHeight')
     center =
       x: svgWidth / 2
       y: svgHeight / 2
 
-    svg = d3.select("#viz")
-      .append("svg")
-      .attr("width", svgWidth)
-      .attr("height", svgHeight)
+    svg = d3.select("svg")
 
     showDetails = (data, id, elem) =>
       @get('controller').set('hover', data.id)
@@ -37,6 +45,7 @@ App.ChartView = Em.View.extend
       r: 'number_of_employees'
       x: 'months_since_raise'
       y: 'amount_raised'
+
     rScale = d3.scale.pow().exponent(0.5)
       .domain([0, d3.max(companies.mapProperty(dim.r))])
       .range([2, MAX_RAD])
