@@ -31,10 +31,12 @@ App.HomeView = Em.View.extend
     companies = @get('controller').get('content')
     sum = 0
 
-    #radius_scale = d3.scale.pow().exponent(0.5).domain([0, max_amount]).range([2, 85])
-
+    amountsRaised = companies.mapProperty('amount_raised')
+    max_amount = d3.max(amountsRaised)
+    radius_scale = d3.scale.pow().exponent(0.5).domain([0, max_amount]).range([2, 85])
+    
     cnodes = companies.map (c) ->
-      funding = Math.log(c.get('amount_raised'))
+      funding = radius_scale(c.get('amount_raised'))
       data =
         x: Math.random() * svgWidth
         y: Math.random() * svgHeight
