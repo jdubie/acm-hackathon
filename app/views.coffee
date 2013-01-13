@@ -7,13 +7,20 @@ App.ApplicationView = Em.View.extend
   templateName: require 'templates/application'
 
 App.HomeView = Em.View.extend
-  didInsertElement: -> @$().hide().fadeIn('slow')
   templateName: require 'templates/home'
-  testFoo: (a,b) ->
-    this.get('controller').set('link', a.context)
+  didInsertElement: ->
+    svg = d3.select("#viz")
+      .append("svg")
+      .attr("width", 500)
+      .attr("height", 250)
 
-App.ProfileView = Em.View.extend
-  templateName: require('templates/profile')
+    createCircle = (x, y) ->
+      svg.append("circle")
+        .style("stroke", "gray")
+        .style("fill", "white")
+        .attr("r", 50)
+        .attr("cx", x)
+        .attr("cy", y)
 
-App.NavbarView = Em.View.extend
-  templateName: require 'templates/navbar'
+    createCircle(100, 50)
+    createCircle(100, 150)

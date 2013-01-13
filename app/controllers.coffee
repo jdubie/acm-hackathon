@@ -5,6 +5,5 @@
 App.ApplicationController = Em.Controller.extend
   currentUser: null
 
-App.ProfileController = Em.ObjectController.extend
+App.HomeController = Em.ArrayController.extend
   content: null
-
