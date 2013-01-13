@@ -2,11 +2,6 @@ App = require 'app'
 
 App.Router.map (match) ->
   match('/').to('home')
-<<<<<<< HEAD
-  match('/profile').to('profile')
-  match('/circle').to('circle')
-=======
->>>>>>> f1aa108ca61da7fa478483f466d74fbf75bdd49a
 
 App.HomeRoute = Em.Route.extend
   setupControllers: (controller) ->
