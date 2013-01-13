@@ -18,9 +18,14 @@ App.HomeController = Em.ArrayController.extend
 App.ChartController = Em.ArrayController.extend
   content: null
   query: null
+  hover: false
   fetch: (() ->
-    #@set('content', App.store.find(App.Company))
-    console.log 'we'
     @set('content', App.store.findQuery(App.Company, q: @get('query')))
-    #@set('content', App.store.findQuery(App.Company, q: '*'))
   ).observes('query')
+  selected: (() ->
+    if @get('hover')
+      console.log @get('hover')
+      App.store.find(App.Company, @get('hover'))
+    else
+      false
+  ).property('hover')

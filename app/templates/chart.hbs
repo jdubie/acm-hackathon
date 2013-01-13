@@ -1,3 +1,26 @@
 <h1>chart</h1>
 {{view Em.TextField valueBinding="query"}}
-<div id="viz"></div>
+<div class="row">
+  <div class="span8">
+    <div class="well" id="viz"></div>
+  </div>
+  <div class="span4">
+    <div class="well">
+      {{#if selected}}
+        <img {{bindAttr src="selected.imageUrl"}}></img>
+        <h3>{{selected.name}}</h3>
+        <h3>{{selected.id}}</h3>
+        <p>Number of employees: {{selected.number_of_employees}}</p>
+        <p>Founded year: {{selected.founded_year}}</p>
+        {{!selected.number_good_investors}}
+        <p>Overview: {{selected.overview}}</p>
+        <p>
+          <a target="_blank" {{bindAttr href="crunchbase_url"}}>Crunchbase Link</a>
+        </p>
+        <p>
+          <a target="_blank" {{bindAttr href="lifeswap_URL"}}>LifeSwap Link</a>
+        </p>
+      {{/if}}
+    </div>
+  </div>
+</div>

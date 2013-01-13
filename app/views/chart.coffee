@@ -14,8 +14,6 @@ App.ChartView = Em.View.extend
     isLoaded = @get('controller').get('content').get('isLoaded')
     return unless isLoaded
 
-    #console.log 'wef', @get('controller').get('content').mapProperty('id')
-
     svgWidth = @get('svgWidth')
     svgHeight = @get('svgHeight')
     center =
@@ -27,21 +25,19 @@ App.ChartView = Em.View.extend
     # clean up old state
     svg.selectAll('circle').remove()
 
-    showDetails = (data, id, elem) =>
-      @get('controller').set('hover', data.id)
-    hideDetails = (data, id, elem) =>
-      @get('controller').set('hover', false)
+    showDetails = (data, i, elem, id) =>
+      @get('controller').set('hover', id)
+    hideDetails = ->
 
-    createCircle = (x, y, r) ->
-      #console.log x, y, r
+    createCircle = (x, y, r, id) ->
       svg.append("circle")
         .style("stroke", "black")
         .style("fill", "gray")
         .attr("r", r)
         .attr("cx", x)
         .attr("cy", y)
-        .on("mouseover", (d,i) -> showDetails(d, i, this))
-        .on("mouseout", (d,i) -> hideDetails(d, i, this))
+        .on("mouseover", (d,i) -> showDetails(d, i, this, id))
+        .on("mouseout", (d,i) -> hideDetails(d, i, this, id))
 
     companies = @get('controller').get('content')
 
@@ -75,11 +71,11 @@ App.ChartView = Em.View.extend
 
     cnodes = companies.map (c) ->
       data =
-        id     : c.get('permalink')
+        id     : c.get('id')
         x      : xScale(c.get(dim.x))
         y      : svgHeight - yScale(c.get(dim.y))
         radius : rScale(c.get(dim.r))
-      createCircle(data.x, data.y, data.radius)
+      createCircle(data.x, data.y, data.radius, data.id)
       data
 
   ).observes('controller.content.isLoaded', 'controller.content.query')
