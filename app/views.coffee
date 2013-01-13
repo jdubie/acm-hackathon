@@ -8,7 +8,9 @@ App.ApplicationView = Em.View.extend
 
 App.HomeView = Em.View.extend
   templateName: require 'templates/home'
-  didInsertElement: ->
+  createVisualization: (() ->
+    return if @get('controller').get('content').get('isUpdating')
+      
     svgWidth = 500
     svgHeight = 500
     center =
@@ -68,5 +70,4 @@ App.HomeView = Em.View.extend
           .attr("cy", (d) -> d.y)
     force.start()
 
-    
-    
+  ).observes('controller.content.isUpdating')
