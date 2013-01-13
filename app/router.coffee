@@ -5,6 +5,4 @@ App.Router.map (match) ->
 
 App.HomeRoute = Em.Route.extend
   setupControllers: (controller) ->
-    for i in [0..10]
-      App.Company.createRecord({ _id: i, amount_raised: Math.random()*1000000})
-    controller.set('content', App.store.all(App.Company))
+    controller.set('content', App.store.find(App.Company))
