@@ -3,121 +3,121 @@
     {
       "permalink": "airbnb",
       "name": "Airbnb",
-      "months_since_raise": "-18",
-      "amount_raised": "120000000",
-      "number_of_employees": "300"
+      "months_since_raise": -18,
+      "amount_raised": 120000000,
+      "number_of_employees": 300
     },
     {
       "permalink": "palantir",
       "name": "Palantir",
-      "months_since_raise": "-8",
-      "amount_raised": "301000000",
-      "number_of_employees": "550"
+      "months_since_raise": -8,
+      "amount_raised": 301000000,
+      "number_of_employees": 550
     },
     {
       "permalink": "dropbox",
       "name": "Dropbox",
-      "months_since_raise": "-15",
-      "amount_raised": "257000000",
-      "number_of_employees": "221"
+      "months_since_raise": -15,
+      "amount_raised": 257000000,
+      "number_of_employees": 221
     },
     {
       "permalink": "klout",
       "name": "Klout",
-      "months_since_raise": "-12",
-      "amount_raised": "40000000",
-      "number_of_employees": "79"
+      "months_since_raise": -12,
+      "amount_raised": 40000000,
+      "number_of_employees": 79
     },
     {
       "permalink": "zanbato",
       "name": "Zanbato",
-      "months_since_raise": "-14",
-      "amount_raised": "4850000",
-      "number_of_employees": "25"
+      "months_since_raise": -14,
+      "amount_raised": 4850000,
+      "number_of_employees": 25
     },
     {
       "permalink": "orchestra",
       "name": "Orchestra",
-      "months_since_raise": "-14",
-      "amount_raised": "5000000",
-      "number_of_employees": "9"
+      "months_since_raise": -14,
+      "amount_raised": 5000000,
+      "number_of_employees": 9
     },
     {
       "permalink": "gogobot",
       "name": "gogobot",
-      "months_since_raise": "-14",
-      "amount_raised": "19000000",
-      "number_of_employees": "22"
+      "months_since_raise": -14,
+      "amount_raised": 19000000,
+      "number_of_employees": 22
     },
     {
       "permalink": "sendgrid",
       "name": "SendGrid",
-      "months_since_raise": "-12",
-      "amount_raised": "27400000",
-      "number_of_employees": "60"
+      "months_since_raise": -12,
+      "amount_raised": 27400000,
+      "number_of_employees": 60
     },
     {
       "permalink": "bitcasa",
       "name": "Bitcasa",
-      "months_since_raise": "-7",
-      "amount_raised": "8500000",
-      "number_of_employees": "28"
+      "months_since_raise": -7,
+      "amount_raised": 8500000,
+      "number_of_employees": 28
     },
     {
       "permalink": "dropcam",
       "name": "Dropcam",
-      "months_since_raise": "-7",
-      "amount_raised": "17800000",
-      "number_of_employees": "19"
+      "months_since_raise": -7,
+      "amount_raised": 17800000,
+      "number_of_employees": 19
     },
     {
       "permalink": "branchout",
       "name": "Branchout",
-      "months_since_raise": "-9",
-      "amount_raised": "49000000",
-      "number_of_employees": "37"
+      "months_since_raise": -9,
+      "amount_raised": 49000000,
+      "number_of_employees": 37
     },
     {
       "permalink": "myeatclub",
       "name": "MyEatClub",
-      "months_since_raise": "-18",
-      "amount_raised": "1500000",
-      "number_of_employees": "13"
+      "months_since_raise": -18,
+      "amount_raised": 1500000,
+      "number_of_employees": 13
     },
     {
       "permalink": "taskrabbit",
       "name": "TaskRabbit",
-      "months_since_raise": "-6",
-      "amount_raised": "37700000",
-      "number_of_employees": "45"
+      "months_since_raise": -6,
+      "amount_raised": 37700000,
+      "number_of_employees": 45
     },
     {
       "permalink": "memolane",
       "name": "Memolane",
-      "months_since_raise": "-14",
-      "amount_raised": "2500000",
-      "number_of_employees": "4"
+      "months_since_raise": -14,
+      "amount_raised": 2500000,
+      "number_of_employees": 4
     },
     {
       "permalink": "mozes",
       "name": "Mozes",
-      "months_since_raise": "-54",
-      "amount_raised": "17800000",
-      "number_of_employees": "13"
+      "months_since_raise": -54,
+      "amount_raised": 17800000,
+      "number_of_employees": 13
     },
     {
       "permalink": "cooliris",
       "name": "Cooliris",
-      "months_since_raise": "-23",
-      "amount_raised": "28100000",
-      "number_of_employees": "28"
+      "months_since_raise": -23,
+      "amount_raised": 28100000,
+      "number_of_employees": 28
     },
     {
       "permalink": "cuil",
       "name": "Cuil",
-      "months_since_raise": "-57",
-      "amount_raised": "33000000",
-      "number_of_employees": "30"
+      "months_since_raise": -57,
+      "amount_raised": 33000000,
+      "number_of_employees": 30
     }
   ]
 }
