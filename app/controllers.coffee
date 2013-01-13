@@ -17,3 +17,7 @@ App.HomeController = Em.ArrayController.extend
 
 App.ChartController = Em.ArrayController.extend
   content: null
+  query: null
+  fetch: (() ->
+    @set('content', App.store.findQuery(App.Company, q: @get('query')))
+  ).observes('query')
