@@ -14,3 +14,6 @@ App.HomeController = Em.ArrayController.extend
     else
       false
   ).property('hover')
+
+App.ChartController = Em.ArrayController.extend
+  content: null
