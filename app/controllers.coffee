@@ -17,11 +17,15 @@ App.HomeController = Em.ArrayController.extend
 
 App.ChartController = Em.ArrayController.extend
   content: null
-  query: null
+  query: ""
+  maxResults: 20
+  maxResultsPossible: [10..50]
   hover: false
   fetch: (() ->
-    @set('content', App.store.findQuery(App.Company, q: @get('query')))
-  ).observes('query')
+    q   = @get('query') or "*"    # so that "" becomes "*"
+    max = @get('maxResults')
+    @set('content', App.store.findQuery(App.Company, {q, max}))
+  ).observes('query', 'maxResults')
   selected: (() ->
     if @get('hover')
       console.log @get('hover')

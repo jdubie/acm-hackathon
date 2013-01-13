@@ -9,5 +9,4 @@ App.HomeRoute = Em.Route.extend
     controller.set('content', App.store.find(App.Company))
 
 App.ChartRoute = Em.Route.extend
-  setupControllers: (controller) ->
-    controller.set('content', App.store.findQuery(App.Company, name: '*'))
+  setupControllers: (controller) -> controller.fetch()
