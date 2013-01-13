@@ -14,6 +14,8 @@ App.ChartView = Em.View.extend
     isLoaded = @get('controller').get('content').get('isLoaded')
     return unless isLoaded
 
+    #console.log 'wef', @get('controller').get('content').mapProperty('id')
+
     svgWidth = @get('svgWidth')
     svgHeight = @get('svgHeight')
     center =
@@ -31,6 +33,7 @@ App.ChartView = Em.View.extend
       @get('controller').set('hover', false)
 
     createCircle = (x, y, r) ->
+      #console.log x, y, r
       svg.append("circle")
         .style("stroke", "black")
         .style("fill", "gray")
@@ -54,12 +57,21 @@ App.ChartView = Em.View.extend
       .range([2, MAX_RAD])
 
     xScale = d3.scale.linear()
-      .domain([d3.min(companies.mapProperty(dim.x)), 0])
+      .domain([
+        d3.min(companies.mapProperty(dim.x))
+        d3.max(companies.mapProperty(dim.x))
+        ])
       .range([MAX_RAD, svgWidth - MAX_RAD])
 
     yScale = d3.scale.linear()
-      .domain([0, d3.max(companies.mapProperty(dim.y))])
+      .domain([
+        d3.min(companies.mapProperty(dim.y))
+        d3.max(companies.mapProperty(dim.y))
+      ])
       .range([MAX_RAD, svgHeight - MAX_RAD])
+
+    console.log companies.mapProperty(dim.y).map(yScale)
+    console.log companies.mapProperty(dim.x).map(xScale)
 
     cnodes = companies.map (c) ->
       data =

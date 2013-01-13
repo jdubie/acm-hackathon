@@ -17,7 +17,7 @@ App.Company = DS.Model.extend
 
   number_of_employees_i: DS.attr 'number'
   months_since_raise_i: DS.attr 'number'
-  amount_raised_l: DS.attr 'number' # TODO make this *_d
+  amount_raised_d: DS.attr 'number' # TODO make this *_d
 
   number_of_employees: (() ->
     @get('number_of_employees_i')
@@ -26,8 +26,8 @@ App.Company = DS.Model.extend
     @get('months_since_raise_i')
   ).property('months_since_raise_i')
   amount_raised: (() ->
-    @get('amount_raised_l')
-  ).property('amount_raised_l')
+    @get('amount_raised_d')
+  ).property('amount_raised_d')
 
 
   imageUrl: (() ->
