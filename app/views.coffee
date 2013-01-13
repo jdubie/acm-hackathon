@@ -23,7 +23,7 @@ App.HomeView = Em.View.extend
       .attr("height", svgHeight)
 
     showDetails = (data, id, elem) =>
-      @get('controller').set('hover', data._id)
+      @get('controller').set('hover', data.id)
     hideDetails = (data, id, elem) =>
       @get('controller').set('hover', false)
 
@@ -47,7 +47,7 @@ App.HomeView = Em.View.extend
     cnodes = companies.map (c) ->
       funding = radius_scale(c.get('amount_raised'))
       data =
-        _id: c.get('_id')
+        id: c.get('id')
         x: Math.random() * svgWidth
         y: Math.random() * svgHeight
         radius: funding

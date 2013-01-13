@@ -10,7 +10,7 @@ App.store = DS.Store.create
     plurals:
       company: 'companies.json'
     serializer: DS.JSONSerializer.extend
-      primaryKey: (type) -> '_id'
+      primaryKey: (type) -> 'permalink'
 
 # https://github.com/emberjs/data/issues/504
 #App.store.adapter.serializer.map 'App.Post', user: {embedded: 'load'}, link: {embedded: 'load'}

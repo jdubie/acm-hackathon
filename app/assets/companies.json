@@ -1,7 +1,7 @@
 {
 "companies.json": [
  {
-    "_id": 1,
+    "permalink": "facebook",
     "name": "Facebook",
     "amount_raised": 16000000000.0,
     "category_code": "web",
@@ -15,7 +15,7 @@
     "lifeswap_URL": "https://www.thelifeswap.com/facebook"
   },  
  {
-    "_id": 2,
+    "permalink": "airbnb",
     "name": "Airbnb",
     "amount_raised": 120000000.0,
     "category_code": "web",
@@ -29,7 +29,7 @@
     "lifeswap_URL": "https://www.thelifeswap.com/airbnb"
   },  
  {
-    "_id": 3,
+    "permalink": "palantir",
     "name": "Palantir Technologies",
     "amount_raised": 301000000.0,
     "category_code": "software",
@@ -43,7 +43,7 @@
     "lifeswap_URL": "https://www.thelifeswap.com/palantir"
   },      
   {
-    "_id": 4,
+    "permalink": "dropbox",
     "name": "Dropbox",
     "amount_raised": 257000000.0,
     "category_code": "network_hosting",
@@ -57,7 +57,7 @@
     "lifeswap_URL": "https://www.thelifeswap.com/dropbox"
   },  
   {
-    "_id": 5,
+    "permalink": "klout",
     "name": "Klout",
     "amount_raised": 40000000.0,
     "category_code": "search",
@@ -71,7 +71,7 @@
     "lifeswap_URL": "https://www.thelifeswap.com/klout"
   },
   {
-    "_id": 6,
+    "permalink": "zanbato",
     "name": "Zanbato",
     "amount_raised": 4850000.0,
     "category_code": "ecommerce",
@@ -85,7 +85,7 @@
     "lifeswap_URL": "https://www.thelifeswap.com/zanbato"
   },  
   {
-    "_id": 7,
+    "permalink": "orchestra",
     "name": "Orchestra",
     "amount_raised": 5000000.0,
     "category_code": "web",

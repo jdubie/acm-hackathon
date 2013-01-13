@@ -1,7 +1,8 @@
 App.Company = DS.Model.extend
-  _id           : DS.attr 'string'
+  permalink     : DS.attr 'string'
   amount_raised : DS.attr 'number'
   name          : DS.attr 'string'
+  number_of_employees: DS.attr 'number'
 
   category_code           : DS.attr 'string'
   number_of_employees     : DS.attr 'number'
