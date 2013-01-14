@@ -4,10 +4,26 @@ App.ChartView = Em.View.extend
   svgHeight: 550
   svg: null
   didInsertElement: ->
+    ## svg canvas
     svg = d3.select("#viz")
       .append("svg")
       .attr("width", @get('svgWidth'))
       .attr("height", @get('svgHeight'))
+    ## axes labels
+    svg.append("text")
+      .attr("class", "x label")
+      .attr("text-anchor", "end")
+      .attr("x", @get('svgWidth'))
+      .attr("y", @get('svgHeight') - 6)
+      .text("Months since last raise")
+    svg.append("text")
+      .attr("class", "y label")
+      .attr("text-anchor", "end")
+      .attr("y", 6)
+      .attr("dy", ".75em")
+      .attr("transform", "rotate(-90)")
+      .text("Amount Raised ($)")
+
     @set('svg', svg)
 
   createVisualization: (() ->
@@ -27,7 +43,8 @@ App.ChartView = Em.View.extend
     svg = @get('svg')
 
     # clean up old state
-    svg.selectAll('circle').remove()
+    svg.selectAll("circle").remove()
+    svg.selectAll("g").remove()
 
     showDetails = (data, i, elem, id) =>
       @get('controller').set('hover', id)
@@ -68,20 +85,6 @@ App.ChartView = Em.View.extend
       ])
       .range([padding.top, svgHeight - padding.bottom])
 
-    ## axes
-    svg.append("text")
-      .attr("class", "x label")
-      .attr("text-anchor", "end")
-      .attr("x", @get('svgWidth'))
-      .attr("y", @get('svgHeight') - 6)
-      .text("Months since last raise")
-    svg.append("text")
-      .attr("class", "y label")
-      .attr("text-anchor", "end")
-      .attr("y", 6)
-      .attr("dy", ".75em")
-      .attr("transform", "rotate(-90)")
-      .text("Amount Raised ($)")
     ## x-axis
     xAxis = d3.svg.axis()
       .scale(xScale)
