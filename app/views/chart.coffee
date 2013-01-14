@@ -14,11 +14,15 @@ App.ChartView = Em.View.extend
     isLoaded = @get('controller').get('content').get('isLoaded')
     return unless isLoaded
 
-    svgWidth = @get('svgWidth')
+    svgWidth  = @get('svgWidth')
     svgHeight = @get('svgHeight')
-    center =
-      x: svgWidth / 2
-      y: svgHeight / 2
+    MAX_RAD   = 40
+    pad       = MAX_RAD + 5
+    padding   =
+      top   : pad
+      left  : pad * 3
+      right : pad
+      bottom: pad * 2
 
     svg = @get('svg')
 
@@ -41,8 +45,6 @@ App.ChartView = Em.View.extend
 
     companies = @get('controller').get('content')
 
-    MAX_RAD = 50
-
     dim =
       r: 'number_of_employees'
       x: 'months_since_raise'
@@ -54,17 +56,51 @@ App.ChartView = Em.View.extend
 
     xScale = d3.scale.linear()
       .domain([
-        d3.min(companies.mapProperty(dim.x))
         d3.max(companies.mapProperty(dim.x))
-        ])
-      .range([MAX_RAD, svgWidth - MAX_RAD])
+        d3.min(companies.mapProperty(dim.x))
+      ])
+      .range([padding.left, svgWidth - padding.right])
 
     yScale = d3.scale.linear()
       .domain([
-        d3.min(companies.mapProperty(dim.y))
         d3.max(companies.mapProperty(dim.y))
+        d3.min(companies.mapProperty(dim.y))
       ])
-      .range([MAX_RAD, svgHeight - MAX_RAD])
+      .range([padding.top, svgHeight - padding.bottom])
+
+    ## axes
+    svg.append("text")
+      .attr("class", "x label")
+      .attr("text-anchor", "end")
+      .attr("x", @get('svgWidth'))
+      .attr("y", @get('svgHeight') - 6)
+      .text("Months since last raise")
+    svg.append("text")
+      .attr("class", "y label")
+      .attr("text-anchor", "end")
+      .attr("y", 6)
+      .attr("dy", ".75em")
+      .attr("transform", "rotate(-90)")
+      .text("Amount Raised ($)")
+    ## x-axis
+    xAxis = d3.svg.axis()
+      .scale(xScale)
+      .orient("bottom")
+      .ticks(5)
+    svg.append("g")
+      .attr("class", "axis")
+      .attr("transform", "translate(0,#{svgHeight - MAX_RAD})")
+      .call(xAxis)
+    ## y-axis
+    yAxis = d3.svg.axis()
+      .scale(yScale)
+      .orient("left")
+      .ticks(5)
+    svg.append("g")
+      .attr("class", "axis")
+      .attr("transform", "translate(#{MAX_RAD * 2},0)")
+      .call(yAxis)
+
 
       #console.log companies.mapProperty(dim.y).map(yScale)
       #console.log companies.mapProperty(dim.x).map(xScale)
@@ -72,8 +108,8 @@ App.ChartView = Em.View.extend
     cnodes = companies.map (c) ->
       data =
         id     : c.get('id')
-        x      : svgWidth - xScale(c.get(dim.x))
-        y      : svgHeight - yScale(c.get(dim.y))
+        x      : xScale(c.get(dim.x))
+        y      : yScale(c.get(dim.y))
         radius : rScale(c.get(dim.r))
       createCircle(data.x, data.y, data.radius, data.id)
       data
