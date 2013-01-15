@@ -18,37 +18,54 @@ App.HomeController = Em.ArrayController.extend
 App.ChartController = Em.ArrayController.extend
   content: null
   query: ""
-  category: ""
+  categoryText: "Category"
   categoryPossible: [
     "Category"
-    "advertising"
-    "biotech"
-    "cleantech"
-    "hardware"
-    "web"
-    "ecommerce"
-    "education"
-    "enterprise"
-    "games_video"
-    "mobile"
-    "network_hosting"
-    "search"
-    "security"
-    "semiconductor"
-    "software"
-    "other"
+    "Advertising"
+    "BioTech"
+    "CleanTech"
+    "Consumer Electronics"
+    "Consumer Web"
+    "eCommerce"
+    "Education"
+    "Enterprise"
+    "Entertainment"
+    "Mobile"
+    "Network"
+    "Search"
+    "Security"
+    "Semiconductor"
+    "Software"
+    "Other"
   ]
+  categoryMap:
+    "Category"            : "*"
+    "Advertising"         : "advertising"
+    "BioTech"             : "biotech"
+    "CleanTech"           : "cleantech"
+    "Consumer Electronics": "hardware"
+    "Consumer Web"        : "web"
+    "eCommerce"           : "ecommerce"
+    "Education"           : "education"
+    "Enterprise"          : "enterprise"
+    "Entertainment"       : "games_video"
+    "Mobile"              : "mobile"
+    "Network"             : "network_hosting"
+    "Search"              : "search"
+    "Security"            : "security"
+    "Semiconductor"       : "semiconductor"
+    "Software"            : "software"
+    "Other"               : "other"
   maxResults: 20
   maxResultsPossible: [10..50]
   hover: false
   fetch: (() ->
     q        = @get('query') or "*"       # so "" => "*"
-    category = @get('category')
-    category = "*" if category in ["Category", ""]
+    category = @categoryMap[@get('categoryText')]
     max      = @get('maxResults')
     query    = {q, max, category}
     @set('content', App.store.findQuery(App.Company, query))
-  ).observes('query', 'maxResults', 'category')
+  ).observes('query', 'maxResults', 'categoryText')
   selected: (() ->
     if @get('hover')
       console.log @get('hover')
