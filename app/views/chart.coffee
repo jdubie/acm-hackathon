@@ -3,6 +3,7 @@ App.ChartView = Em.View.extend
   svgWidth: 750
   svgHeight: 550
   svg: null
+  slider: null
   didInsertElement: ->
     ## svg canvas
     svg = d3.select("#viz")
@@ -41,6 +42,28 @@ App.ChartView = Em.View.extend
           .attr("style", "stop-color:rgb(54,175,167); stop-opacity:1")
 
     @set('svg', svg)
+
+    ## jQuery UI slider
+    slider = $(".slider")
+    slider.slider
+      range: true
+      values: [
+        @get('controller').get('start')
+        @get('controller').get('end')
+      ]
+      max: @get('controller').get('sliderSize')
+      min: 0
+      step: 1
+    slider.bind 'slide', (e, ui) =>
+      [start, end] = ui.values
+      @get('controller').set('start', start)
+      @get('controller').set('end', end)
+
+    @set('slider', slider)
+
+  willDestroyElement: ->
+    slider = @get('slider')
+    slider.unbind('slide')
 
   createVisualization: (() ->
     isLoaded = @get('controller').get('content').get('isLoaded')
