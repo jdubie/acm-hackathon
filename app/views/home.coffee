@@ -13,6 +13,22 @@ App.HomeView = Em.View.extend
       .append("svg")
       .attr("width", svgWidth)
       .attr("height", svgHeight)
+    ## bubbles!!
+    defs = svg.append('svg:defs')
+    defs.append('svg:radialGradient')
+      .attr("id", "radial")
+      .attr("cx", "50%")
+      .attr("cy", "50%")
+      .attr("r", "50%")
+      .attr("fx", "50%")
+      .attr("fy", "50%")
+      .call (gradient) ->
+        gradient.append("svg:stop")
+          .attr("offset", "0%")
+          .attr("style", "stop-color:rgb(255,255,255); stop-opacity:0")
+        gradient.append("svg:stop")
+          .attr("offset", "100%")
+          .attr("style", "stop-color:rgb(54,175,167); stop-opacity:1")
 
     showDetails = (data, id, elem) =>
       @get('controller').set('hover', data.id)
@@ -21,8 +37,7 @@ App.HomeView = Em.View.extend
 
     createCircle = (x, y, r) ->
       svg.append("circle")
-        .style("stroke", "black")
-        .style("fill", "gray")
+        .style("fill", "url(#radial)")
         .attr("r", r)
         .attr("cx", x)
         .attr("cy", y)

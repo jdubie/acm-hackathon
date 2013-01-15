@@ -26,7 +26,6 @@ App.ChartView = Em.View.extend
 
     defs = svg.append('svg:defs')
     defs.append('svg:radialGradient')
-      #.attr('gradientUnits', 'userSpaceOnUse')
       .attr("id", "radial")
       .attr("cx", "50%")
       .attr("cy", "50%")
