@@ -1,6 +1,23 @@
 @import "bootstrap/less/bootstrap.less";
 @import "bootstrap/less/responsive.less";
 
+@primaryColor: #36afa7;
+
 @media (min-width: 980px) {
   div.container.root { padding-top: 40px; }
+}
+
+// d3 axes
+.axis path,
+.axis line {
+  fill: none;
+  stroke: black;
+  shape-rendering: crispEdges;
+}
+.axis text {
+  //font-family: sans-serif;
+  font-size: 11px;
+}
+circle {
+  stroke: @primaryColor;
 }

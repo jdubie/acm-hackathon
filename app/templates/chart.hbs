@@ -1,0 +1,21 @@
+<h1>chart</h1>
+{{view Em.TextField valueBinding="query"}}
+{{view Em.Select contentBinding="categoryPossible" valueBinding="categoryText" }}
+{{view Em.Select contentBinding="maxResultsPossible" valueBinding="maxResults" }}
+<div class="row">
+  <div class="span8">
+    <div class="well" id="viz"></div>
+  </div>
+  <div class="span4">
+    <div class="well">
+      {{#if selected}}
+        <img {{bindAttr src="selected.imageUrl"}}></img>
+        <h3>{{selected.name}}</h3>
+        <p>Number of employees: {{selected.number_of_employees}}</p>
+        <p>Amount raised in last round: {{selected.amount_raised}}</p>
+        <p>Months since last round: {{selected.months_since_raise}}</p>
+        <p>Overview: {{selected.description}}</p>
+      {{/if}}
+    </div>
+  </div>
+</div>

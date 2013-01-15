@@ -8,9 +8,9 @@ App.store = DS.Store.create
   adapter: DS.RESTAdapter.create
     bulkCommit: false
     plurals:
-      company: 'companies.json'
+      company: 'companies'
     serializer: DS.JSONSerializer.extend
-      primaryKey: (type) -> 'permalink'
+      primaryKey: (type) -> 'id'
 
 # https://github.com/emberjs/data/issues/504
 #App.store.adapter.serializer.map 'App.Post', user: {embedded: 'load'}, link: {embedded: 'load'}
