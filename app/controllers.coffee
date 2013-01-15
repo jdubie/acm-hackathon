@@ -18,14 +18,37 @@ App.HomeController = Em.ArrayController.extend
 App.ChartController = Em.ArrayController.extend
   content: null
   query: ""
+  category: ""
+  categoryPossible: [
+    "Category"
+    "advertising"
+    "biotech"
+    "cleantech"
+    "hardware"
+    "web"
+    "ecommerce"
+    "education"
+    "enterprise"
+    "games_video"
+    "mobile"
+    "network_hosting"
+    "search"
+    "security"
+    "semiconductor"
+    "software"
+    "other"
+  ]
   maxResults: 20
   maxResultsPossible: [10..50]
   hover: false
   fetch: (() ->
-    q   = @get('query') or "*"    # so that "" becomes "*"
-    max = @get('maxResults')
-    @set('content', App.store.findQuery(App.Company, {q, max}))
-  ).observes('query', 'maxResults')
+    q        = @get('query') or "*"       # so "" => "*"
+    category = @get('category')
+    category = "*" if category in ["Category", ""]
+    max      = @get('maxResults')
+    query    = {q, max, category}
+    @set('content', App.store.findQuery(App.Company, query))
+  ).observes('query', 'maxResults', 'category')
   selected: (() ->
     if @get('hover')
       console.log @get('hover')
