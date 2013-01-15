@@ -59,13 +59,39 @@ App.ChartController = Em.ArrayController.extend
   maxResults: 20
   maxResultsPossible: [10..50]
   hover: false
+
+  ## founding dates (slider)
+  sliderSize: 2013 - 1800     # oldest company founded in 1800
+  start: (->
+    @get('sliderSize') - 20   # start 10 years ago
+  ).property('sliderSize')
+  end  : (->
+    @get('sliderSize')
+  ).property('sliderSize')
+  lower: (() ->
+    @get('sliderSize') - @get('start')
+  ).property('start', 'sliderSize')
+  upper: (() ->
+    @get('sliderSize') - @get('end')
+  ).property('end', 'sliderSize')
+  startYear: (() ->
+    currentYear = (new Date()).getFullYear()
+    currentYear - @get('lower')
+  ).property('start')
+  endYear: (() ->
+    currentYear = (new Date()).getFullYear()
+    currentYear - @get('upper')
+  ).property('end')
+
   fetch: (() ->
-    q        = @get('query') or "*"       # so "" => "*"
-    category = @categoryMap[@get('categoryText')]
-    max      = @get('maxResults')
-    query    = {q, max, category}
+    q         = @get('query') or "*"       # so "" => "*"
+    category  = @categoryMap[@get('categoryText')]
+    max       = @get('maxResults')
+    startYear = @get('startYear')
+    endYear   = @get('endYear')
+    query     = {q, max, category, startYear, endYear}
     @set('content', App.store.findQuery(App.Company, query))
-  ).observes('query', 'maxResults', 'categoryText')
+  ).observes('query', 'maxResults', 'categoryText', 'startYear', 'endYear')
   selected: (() ->
     if @get('hover')
       console.log @get('hover')

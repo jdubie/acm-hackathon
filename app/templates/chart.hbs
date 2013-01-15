@@ -3,6 +3,15 @@
 {{view Em.Select contentBinding="categoryPossible" valueBinding="categoryText" }}
 {{view Em.Select contentBinding="maxResultsPossible" valueBinding="maxResults" }}
 <div class="row">
+  <div class="span6">
+    <div class="slider"></div>
+  </div>
+  <div class="span2">
+    {{startYear}} - {{endYear}}
+  </div>
+</div>
+<br/>
+<div class="row">
   <div class="span8">
     <div class="well" id="viz"></div>
   </div>
@@ -11,10 +20,11 @@
       {{#if selected}}
         <img {{bindAttr src="selected.imageUrl"}}></img>
         <h3>{{selected.name}}</h3>
-        <p>Number of employees: {{selected.number_of_employees}}</p>
-        <p>Amount raised in last round: {{selected.amount_raised}}</p>
-        <p>Months since last round: {{selected.months_since_raise}}</p>
-        <p>Overview: {{selected.description}}</p>
+        <p><strong>Number of employees:</strong> {{selected.number_of_employees}}</p>
+        <p><strong>Year founded:</strong> {{selected.year_founded}}</p>
+        <p><strong>Amount raised in last round:</strong> {{selected.amount_raised}}</p>
+        <p><strong>Months since last round:</strong> {{selected.months_since_raise}}</p>
+        <p><strong>Overview:</strong> {{selected.description}}</p>
       {{/if}}
     </div>
   </div>
