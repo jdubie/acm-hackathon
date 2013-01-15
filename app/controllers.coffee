@@ -61,19 +61,21 @@ App.ChartController = Em.ArrayController.extend
   hover: false
 
   ## founding dates (slider)
-  sliderSize: 2013 - 1800     # oldest company founded in 1800
-  start: (->
-    @get('sliderSize') - 20   # start 10 years ago
-  ).property('sliderSize')
+  oldestFounding: 1985    # although oldest company founded in 1800
+  newestFounding: 2013
+  sliderSize: (->
+    @get('newestFounding') - @get('oldestFounding')
+  ).property('oldestFounding', 'newestFounding')
+  start: 0
   end  : (->
     @get('sliderSize')
-  ).property('sliderSize')
+  ).property()
   lower: (() ->
     @get('sliderSize') - @get('start')
-  ).property('start', 'sliderSize')
+  ).property('start')
   upper: (() ->
     @get('sliderSize') - @get('end')
-  ).property('end', 'sliderSize')
+  ).property('end')
   startYear: (() ->
     currentYear = (new Date()).getFullYear()
     currentYear - @get('lower')
