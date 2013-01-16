@@ -18,6 +18,7 @@ App.HomeController = Em.ArrayController.extend
 App.ChartController = Em.ArrayController.extend
   content: null
   query: ""
+  investorQuery: ""
   categoryText: "Category"
   categoryPossible: [
     "Category"
@@ -87,13 +88,14 @@ App.ChartController = Em.ArrayController.extend
 
   fetch: (() ->
     q         = @get('query') or "*"       # so "" => "*"
+    investors = @get('investorQuery') or "*"
     category  = @categoryMap[@get('categoryText')]
     max       = @get('maxResults')
     startYear = @get('startYear')
     endYear   = @get('endYear')
-    query     = {q, max, category, startYear, endYear}
+    query     = {q, max, category, startYear, endYear, investors}
     @set('content', App.store.findQuery(App.Company, query))
-  ).observes('query', 'maxResults', 'categoryText', 'startYear', 'endYear')
+  ).observes('query', 'investorQuery', 'maxResults', 'categoryText', 'startYear', 'endYear')
   selected: (() ->
     if @get('hover')
       console.log @get('hover')
