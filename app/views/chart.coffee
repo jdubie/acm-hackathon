@@ -1,15 +1,20 @@
 App.ChartView = Em.View.extend
   templateName: require 'templates/chart'
-  svgWidth: 750
+  svgWidth: (->
+    @get('$svg')?.width() ? 0
+  ).property()
   svgHeight: 550
   svg: null
-  slider: null
+  $svg: null
+  $slider: null
   didInsertElement: ->
     ## svg canvas
     svg = d3.select("#viz")
       .append("svg")
-      .attr("width", @get('svgWidth'))
+      .attr("width", "100%")
       .attr("height", @get('svgHeight'))
+    ## save to jquery
+    @set("$svg", $("svg"))
     ## axes labels
     svg.append("text")
       .attr("class", "x label")
@@ -41,11 +46,15 @@ App.ChartView = Em.View.extend
           .attr("offset", "100%")
           .attr("style", "stop-color:rgb(54,175,167); stop-opacity:1")
 
+    ## responsive svg!
+    $(window).bind 'resize', () =>
+      @set('svgWidth', @get("$svg").width())
+
     @set('svg', svg)
 
     ## jQuery UI slider
-    slider = $(".slider")
-    slider.slider
+    $slider = $(".slider")
+    $slider.slider
       range: true
       values: [
         @get('controller').get('start')
@@ -54,16 +63,17 @@ App.ChartView = Em.View.extend
       max: @get('controller').get('sliderSize')
       min: 0
       step: 1
-    slider.bind 'slide', (e, ui) =>
+    $slider.bind 'slide', (e, ui) =>
       [start, end] = ui.values
       @get('controller').set('start', start)
       @get('controller').set('end', end)
 
-    @set('slider', slider)
+    @set("$slider", $slider)
 
   willDestroyElement: ->
-    slider = @get('slider')
-    slider.unbind('slide')
+    $slider = @get("$slider")
+    $slider.unbind("slide")
+    $(window).unbind 'resize'
 
   createVisualization: (() ->
     isLoaded = @get('controller').get('content').get('isLoaded')
@@ -155,4 +165,4 @@ App.ChartView = Em.View.extend
       createCircle(data.x, data.y, data.radius, data.id)
       data
 
-  ).observes('controller.content.isLoaded', 'controller.content.query')
+  ).observes('controller.content.isLoaded', 'controller.content.query', 'svgWidth')
