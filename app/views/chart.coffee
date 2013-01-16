@@ -3,7 +3,9 @@ App.ChartView = Em.View.extend
   svgWidth: (->
     @get('$svg')?.width() ? 0
   ).property()
-  svgHeight: 550
+  svgHeight: (->
+    @get("$svg")?.height() ? 0
+  ).property()
   svg: null
   $svg: null
   $slider: null
@@ -12,7 +14,6 @@ App.ChartView = Em.View.extend
     svg = d3.select("#viz")
       .append("svg")
       .attr("width", "100%")
-      .attr("height", @get('svgHeight'))
     ## save to jquery
     @set("$svg", $("svg"))
     ## axes labels
@@ -49,6 +50,8 @@ App.ChartView = Em.View.extend
     ## responsive svg!
     $(window).bind 'resize', () =>
       @set('svgWidth', @get("$svg").width())
+      # @todo: remove below; doesn't actually change...
+      @set('svgHeight', @get("$svg").height())
 
     @set('svg', svg)
 
