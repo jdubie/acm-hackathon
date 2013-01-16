@@ -7,6 +7,8 @@ App.Company = DS.Model.extend
   months_since_raise_i  : DS.attr 'number'
   amount_raised_d       : DS.attr 'number' # TODO make this *_d
   founded_year_i        : DS.attr 'number'
+  # @todo: make this a hasMany??
+  investors_txt         : DS.attr 'array'
 
   number_of_employees: (() ->
     @get('number_of_employees_i')
@@ -20,7 +22,9 @@ App.Company = DS.Model.extend
   year_founded: (->
     @get('founded_year_i')
   ).property('founded_year_i')
-
+  investors: (->
+    @get('investors_txt')
+  ).property('investors_txt')
 
   imageUrl: (() ->
     'http://crunchbase.com/' + @get('small_image_s')

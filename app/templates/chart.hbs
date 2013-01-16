@@ -25,6 +25,14 @@
         <p><strong>Amount raised in last round:</strong> {{selected.amount_raised}}</p>
         <p><strong>Months since last round:</strong> {{selected.months_since_raise}}</p>
         <p><strong>Overview:</strong> {{selected.description}}</p>
+        <p>
+          <strong>Investors:</strong>
+          <ul>
+            {{#each selected.investors}}
+            <li>{{.}}</li>
+            {{/each}}
+          </ul>
+        </p>
       {{/if}}
     </div>
   </div>
