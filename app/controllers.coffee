@@ -19,7 +19,9 @@ App.ChartController = Em.ArrayController.extend
   content: null
   query: ""
   investorQuery: ""
-  categoryText: "Category"
+  categoryText: (->
+    "Mobile"
+  ).property()
   categoryPossible: [
     "Category"
     "Advertising"
@@ -67,7 +69,9 @@ App.ChartController = Em.ArrayController.extend
   sliderSize: (->
     @get('newestFounding') - @get('oldestFounding')
   ).property('oldestFounding', 'newestFounding')
-  start: 0
+  start: (->
+    2011 - @get('oldestFounding')
+  ).property()
   end  : (->
     @get('sliderSize')
   ).property()

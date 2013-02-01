@@ -11,9 +11,11 @@ App.ChartView = Em.View.extend
   $slider: null
   didInsertElement: ->
     ## svg canvas
+    @set('svgHeight', 600)
     svg = d3.select("#viz")
       .append("svg")
       .attr("width", "100%")
+      .attr("height", "600")
     ## save to jquery
     @set("$svg", $("svg"))
     ## axes labels
@@ -51,7 +53,7 @@ App.ChartView = Em.View.extend
     $(window).bind 'resize', () =>
       @set('svgWidth', @get("$svg").width())
       # @todo: remove below; doesn't actually change...
-      @set('svgHeight', @get("$svg").height())
+      #@set('svgHeight', @get("$svg").height())
 
     @set('svg', svg)
 
