@@ -1,4 +1,6 @@
-<h1>chart</h1>
+<h1>
+  <img src="/img/trends-logo.png" style="width: 275px;"></img>
+</h1>
 {{view Em.TextField valueBinding="query" placeholder="Search"}}
 {{view Em.TextField valueBinding="investorQuery" placeholder="Investor Search"}}
 {{view Em.Select contentBinding="categoryPossible" valueBinding="categoryText" }}
@@ -40,6 +42,10 @@
           </ul>
         </p>
       {{/if}}
+    </div>
+    <div class="well">
+      <p>Data courtesy of <a href="http://www.crunchbase.com" target="_blank"><img src="/img/crunchbase-logo.png" style="width: 150px;"></img></a>
+      </p>
     </div>
   </div>
 </div>
